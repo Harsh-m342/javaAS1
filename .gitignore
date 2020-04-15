@@ -1,2 +1,5 @@
 #ALL CLASS FILE
 *.class
+#all script file
+*.sh
+
