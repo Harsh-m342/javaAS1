@@ -1,0 +1,21 @@
+Single Ampercent (& ) can be used as Bitwise operator and Boolean logical operator.
+
+Now the difference arises when & is used as logical operator.
+
+This can be best explained with the help of an example.
+
+int i=5;
+if(i<3 & i++ < 10)
+{
+//perform action
+}
+
+Now in this case
+First expression is i<3
+Second expression is i++ < 10
+
+when & is used it will evaluate both the expressions regardless of the fact that it finds first expression as FALSE and only then will it give an answer.
+
+Whereas if && was used in place of & , after it had evaluated first expression and had found result of first expression as FALSE, it would not have evaluated second expression. Thus saving time.
+
+FYI... && is also called as counterpart of & and the evaluation it does is called short-circuit evaluation.
