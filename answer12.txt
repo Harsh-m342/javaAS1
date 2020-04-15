@@ -1,0 +1,47 @@
+The try-with-resources statement automatically closes all the resources at the end of the statement. A resource is an object to be closed at the end of the program.
+
+Its syntax is:
+
+try (resource declaration) {
+  // use of the resource
+} catch (ExceptionType e1) {
+  // catch block
+}
+
+As seen from the above syntax, we declare the try-with-resources statement by,
+
+    declaring and instantiating the resource within the try clause.
+    specifying and handling all exceptions that might be thrown while closing the resource.
+
+Note: The try-with-resources statement closes all the resources that implement the AutoCloseable interface.
+
+Let us take an example that implements the try-with-resources statement.
+Example 1: try-with-resources
+
+import java.io.*;
+
+class Main {
+  public static void main(String[] args) {
+    String line;
+    try(BufferedReader br = new BufferedReader(new FileReader("test.txt"))) {
+      while ((line = br.readLine()) != null) {
+        System.out.println("Line =>"+line);
+      }
+    } catch (IOException e) {
+      System.out.println("IOException in try block =>" + e.getMessage());
+    }
+  }
+}
+
+Output if the test.txt file is not found.
+
+IOException in try-with-resources block =>test.txt (No such file or directory)
+
+Output if the test.txt file is found.
+
+Entering try-with-resources block
+Line =>test line
+
+In this example, we use an instance of BufferedReader to read data from the test.txt file.
+
+Declaring and instantiating the BufferedReader inside the try-with-resources statement ensures that its instance is closed regardless of whether the try statement completes normally or throws an exception.
