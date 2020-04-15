@@ -1,0 +1,90 @@
+Checked exceptions are checked at compile-time. It means if a method is throwing a checked exception then it should handle the exception using try-catch block or it should declare the exception using throws keyword, otherwise the program will give a compilation error.
+
+Lets understand this with the help of an example:
+import java.io.*;
+class Example {  
+   public static void main(String args[]) 
+   {
+	FileInputStream fis = null;
+	/*This constructor FileInputStream(File filename)
+	 * throws FileNotFoundException which is a checked
+	 * exception
+         */
+        fis = new FileInputStream("B:/myfile.txt"); 
+	int k; 
+
+	/* Method read() of FileInputStream class also throws 
+	 * a checked exception: IOException
+         */
+	while(( k = fis.read() ) != -1) 
+	{ 
+		System.out.print((char)k); 
+	} 
+
+	/*The method close() closes the file input stream
+	 * It throws IOException*/
+	fis.close(); 	
+   }
+}
+
+Output:
+
+Exception in thread "main" java.lang.Error: Unresolved compilation problems: 
+Unhandled exception type FileNotFoundException
+Unhandled exception type IOException
+Unhandled exception type IOException
+
+/**********************************************************************************/
+
+
+Unchecked exceptions are not checked at compile time. It means if your program is throwing an unchecked exception and even if you didn’t handle/declare that exception, the program won’t give a compilation error. Most of the times these exception occurs due to the bad data provided by user during the user-program interaction. It is up to the programmer to judge the conditions in advance, that can cause such exceptions and handle them appropriately. All Unchecked exceptions are direct sub classes of RuntimeException class.
+
+Lets understand this with an example:
+Unchecked Exception Example
+
+class Example {  
+   public static void main(String args[])
+   {
+	int num1=10;
+	int num2=0;
+	/*Since I'm dividing an integer with 0
+	 * it should throw ArithmeticException
+         */
+	int res=num1/num2;
+	System.out.println(res);
+   }
+}
+
+If you compile this code, it would compile successfully however when you will run it, it would throw ArithmeticException. That clearly shows that unchecked exceptions are not checked at compile-time, they occurs at runtime. Lets see another example.
+
+class Example {  
+   public static void main(String args[])
+   {
+	int arr[] ={1,2,3,4,5};
+	/* My array has only 5 elements but we are trying to 
+         * display the value of 8th element. It should throw
+	 * ArrayIndexOutOfBoundsException
+         */
+	System.out.println(arr[7]);
+   }
+}
+
+This code would also compile successfully since ArrayIndexOutOfBoundsException is also an unchecked exception.
+Note: It doesn’t mean that compiler is not checking these exceptions so we shouldn’t handle them. In fact we should handle them more carefully. For e.g. In the above example there should be a exception message to user that they are trying to display a value which doesn’t exist in array so that user would be able to correct the issue.
+
+class Example {  
+   public static void main(String args[]) {
+	try{
+	   int arr[] ={1,2,3,4,5};
+	   System.out.println(arr[7]);
+	}
+        catch(ArrayIndexOutOfBoundsException e){
+	   System.out.println("The specified index does not exist " +
+		"in array. Please correct the error.");
+	}
+   }
+}
+
+Output:
+
+The specified index does not exist in array. Please correct the error.
