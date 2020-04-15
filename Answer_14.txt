@@ -1,0 +1,8 @@
+  First difference between them is, equals() is a method defined inside the java.lang.Object class and == is one type of operator and you can compare both primitive and objects using equality operator in Java.
+
+·          Second difference between equals and == operator is that, == is used to check reference or memory address of the objects whether they point to the same location or not, and equals() method is used to compare the contents of the object e.g. in case of comparing String its characters, in case of Integer it's their numeric values etc.
+
+      You can define your own equals method for domain object as per business rules e.g. two Employee objects are equal if there EmployeeId is same.
+
+·          Third difference between equals and the == operator is that You can not change the behavior of == operator but we can override equals() method and define the criteria for the objects equality.
+
